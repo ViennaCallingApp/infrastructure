@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: viennacalling-nginx
+  name: viennacalling-nginx
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: viennacalling-nginx
+  template:
+    metadata:
+      labels:
+        app: viennacalling-nginx
+    spec:
+      containers:
+        - image: jajcoszek/viennacalling-nginx:1.0.0
+          imagePullPolicy: Always
+          name: viennacalling-nginx
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
